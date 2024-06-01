@@ -1,11 +1,23 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useEffect } from "react";
 import { Inter } from "next/font/google";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "@/styles/Home.module.css";
+import { useIcons } from "@/lib/icons";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { getIcon } = useIcons();
+
+  useEffect(() => {
+    getIcon({ prefix: "fas", iconName: "times" });
+    getIcon({ prefix: "fab", iconName: "facebook" });
+    getIcon({ prefix: "far", iconName: "user" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Head>
@@ -20,6 +32,9 @@ export default function Home() {
             Get started by editing&nbsp;
             <code className={styles.code}>src/pages/index.js</code>
           </p>
+          <FontAwesomeIcon icon={["fas", "times"]} />
+          <FontAwesomeIcon icon={["far", "user"]} />
+          <FontAwesomeIcon icon={["fab", "facebook"]} />
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
